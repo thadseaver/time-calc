@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Time Calculator</title>
+</head>
+<body>
+	<div id="wrap">
+		<h1>Time Calculator</h1>
+		<form>
+			<fieldset>
+				<legend>Start Time</legend>
+				<label>Hour: <input id="start-hour" type="text" required autofocus></label>
+				<label>Minute: <input id="start-minute" type="text" required></label>
+				<label>AM<input id="start-am" type="radio" name="start-am-pm" value="am" required></label>
+				<label>PM<input id="start-pm" type="radio" name="start-am-pm" value="pm" required></label>
+			</fieldset>
+			<fieldset>
+				<legend>End Time</legend>
+				<label>Hour: <input id="end-hour" type="text" required></label>
+				<label>Minute: <input id="end-minute" type="text" required></label>
+				<label>AM<input id="end-am" type="radio" name="end-am-pm" value="am" required></label>
+				<label>PM<input id="end-pm" type="radio" name="end-am-pm" value="pm" required></label>
+			</fieldset>
+			<button id="calc">Calculate</button>
+			<input type="reset" id="clear" value="Reset">
+			
+		</form>
+		<div>
+			<p>Total time: </p>
+		</div>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+</html>
