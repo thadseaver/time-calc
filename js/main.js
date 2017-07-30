@@ -11,9 +11,9 @@
             endHour = parseInt(document.getElementById('end-hour').value),
             endMinute = parseInt(document.getElementById('end-minute').value),
 
+            // Convert to total misnute
             startToMinutes = ((startHour * 60) + startMinute),
             endToMinutes = ((endHour * 60) + endMinute),
-            //convert to total minutes
 
             minutesDiff = (endToMinutes - startToMinutes),
 
@@ -22,6 +22,21 @@
             hourOutput = "",
             minuteOutput = "";
 
+            // Allows for AM/PM calculation
+            if (startAmPm === "pm") {
+                startHour += 12;
+            } else {
+                startHour = startHour;
+            };
+
+            // Allows for AM/PM calculation
+            if (endAmPm === "pm") {
+                endHour += 12;
+            } else {
+                endHour = endHour;
+            };
+
+            // Determines proper output of hour/hours and minute/minutes
             if (hourFinal === 1) {
                 hourOutput = "hour";
             } else {
@@ -34,7 +49,6 @@
                 minuteOutput = "minutes";
             }
 
-            
 
         console.log("Total time is " + hourFinal + " " + hourOutput + " and " + minuteFinal + " " + minuteOutput);
 
@@ -45,8 +59,8 @@
 
     clr.onclick = function(){
 
-        window.location.reload();
         //removes empty field warnings
+        window.location.reload();
     };
     
 })();
