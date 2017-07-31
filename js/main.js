@@ -7,18 +7,16 @@
         var startHour = parseInt(document.getElementById('start-hour').value),
             startMinute = parseInt(document.getElementById('start-minute').value),
             startAmPm = document.querySelector('input[name = start-am-pm]:checked').value,
-            endAmPm =document.querySelector('input[name = end-am-pm]:checked').value;
             endHour = parseInt(document.getElementById('end-hour').value),
             endMinute = parseInt(document.getElementById('end-minute').value),
+            endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
+            lunchTaken = document.querySelector('input[name = lunch]:checked').value,
 
-            // Convert to total misnute
-            startToMinutes = ((startHour * 60) + startMinute),
-            endToMinutes = ((endHour * 60) + endMinute),
-
-            minutesDiff = (endToMinutes - startToMinutes),
-
-            hourFinal = Math.floor(minutesDiff / 60),
-            minuteFinal = (minutesDiff % 60),
+            startToMinutes = 0,
+            endToMinutes = 0,
+            minutesDiff = 0,
+            hourFinal = 0,
+            minuteFinal = 0,
             hourOutput = "",
             minuteOutput = "";
 
@@ -36,6 +34,11 @@
                 endHour = endHour;
             };
 
+            // Convert to total minutes
+            startToMinutes = ((startHour * 60) + startMinute);
+            endToMinutes = ((endHour * 60) + endMinute);
+
+
             // Determines proper output of hour/hours and minute/minutes
             if (hourFinal === 1) {
                 hourOutput = "hour";
@@ -50,7 +53,22 @@
             }
 
 
+            minutesDiff = (endToMinutes - startToMinutes);
+
+            // Removes 30 minutes if lunch was taken
+            if (lunchTaken === "yes") {
+                minutesDiff -= 30;
+            } else {
+                minutesDiff = minutesDiff;
+            };
+            
+            hourFinal = Math.floor(minutesDiff / 60);
+            minuteFinal = (minutesDiff % 60);
+
         console.log("Total time is " + hourFinal + " " + hourOutput + " and " + minuteFinal + " " + minuteOutput);
+        console.log("Lunch taken? " + lunchTaken);
+        console.log("Start hour: " + startHour);
+        console.log("End hour: " + endHour);
 
         return false;
     };
@@ -59,7 +77,7 @@
 
     clr.onclick = function(){
 
-        //removes empty field warnings
+        //remove empty field warnings
         window.location.reload();
     };
     
