@@ -23,21 +23,27 @@
             // Allows for AM/PM calculation
             if (startAmPm === "pm") {
                 startHour += 12;
-            } else {
-                startHour = startHour;
-            };
+            }
 
             // Allows for AM/PM calculation
             if (endAmPm === "pm") {
                 endHour += 12;
-            } else {
-                endHour = endHour;
-            };
+            }
 
             // Convert to total minutes
             startToMinutes = ((startHour * 60) + startMinute);
             endToMinutes = ((endHour * 60) + endMinute);
 
+
+            minutesDiff = (endToMinutes - startToMinutes);
+
+            // Removes 30 minutes if lunch was taken
+            if (lunchTaken === "yes") {
+                minutesDiff -= 30;
+            }
+            
+            hourFinal = Math.floor(minutesDiff / 60);
+            minuteFinal = (minutesDiff % 60);
 
             // Determines proper output of hour/hours and minute/minutes
             if (hourFinal === 1) {
@@ -51,19 +57,6 @@
             } else {
                 minuteOutput = "minutes";
             }
-
-
-            minutesDiff = (endToMinutes - startToMinutes);
-
-            // Removes 30 minutes if lunch was taken
-            if (lunchTaken === "yes") {
-                minutesDiff -= 30;
-            } else {
-                minutesDiff = minutesDiff;
-            };
-            
-            hourFinal = Math.floor(minutesDiff / 60);
-            minuteFinal = (minutesDiff % 60);
 
             var ans = document.getElementById("answer");
             ans.innerHTML = "<p>Total time is " + hourFinal + " " + hourOutput +
