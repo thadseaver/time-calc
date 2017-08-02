@@ -65,10 +65,9 @@
             hourFinal = Math.floor(minutesDiff / 60);
             minuteFinal = (minutesDiff % 60);
 
-        console.log("Total time is " + hourFinal + " " + hourOutput + " and " + minuteFinal + " " + minuteOutput);
-        console.log("Lunch taken? " + lunchTaken);
-        console.log("Start hour: " + startHour);
-        console.log("End hour: " + endHour);
+            var ans = document.getElementById("answer");
+            ans.innerHTML = "<p>Total time is " + hourFinal + " " + hourOutput +
+            " and " + minuteFinal + " " + minuteOutput + "</p>";
 
         return false;
     };
