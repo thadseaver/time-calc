@@ -21,12 +21,12 @@
             minuteOutput = "";
 
             // Allows for AM/PM calculation
-            if (startAmPm === "pm") {
+            if (startAmPm === "pm" && startHour != 12) {
                 startHour += 12;
             }
 
             // Allows for AM/PM calculation
-            if (endAmPm === "pm") {
+            if (endAmPm === "pm" && endHour != 12) {
                 endHour += 12;
             }
 
