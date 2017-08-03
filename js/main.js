@@ -2,7 +2,7 @@
 
     var btn = document.getElementById('calc');
 
-    btn.onclick = function(){
+    btn.onclick = function(e){
 
         var startHour = parseInt(document.getElementById('start-hour').value),
             startMinute = parseInt(document.getElementById('start-minute').value),
@@ -11,14 +11,13 @@
             endMinute = parseInt(document.getElementById('end-minute').value),
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
-
-            startToMinutes = 0,
-            endToMinutes = 0,
-            minutesDiff = 0,
-            hourFinal = 0,
-            minuteFinal = 0,
-            hourOutput = "",
-            minuteOutput = "";
+            startToMinutes,
+            endToMinutes,
+            minutesDiff,
+            hourFinal,
+            minuteFinal,
+            hourOutput,
+            minuteOutput;
 
             // Allows for AM/PM calculation
             if (startAmPm === "pm" && startHour != 12) {
@@ -60,16 +59,16 @@
 
             var ans = document.getElementById("answer");
             ans.innerHTML = "<p>Total time is " + hourFinal + " " + hourOutput +
-            " and " + minuteFinal + " " + minuteOutput + "</p>";
+            " and " + minuteFinal + " " + minuteOutput + "." + "</p>";
 
-        return false;
+        e.preventDefault();
     };
 
     var clr = document.getElementById('clear');
 
     clr.onclick = function(){
 
-        //remove empty field warnings
+        // Removes previous output
         window.location.reload();
     };
     
