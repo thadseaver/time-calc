@@ -11,6 +11,8 @@
             endMinute = parseInt(document.getElementById('end-minute').value),
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
+            validateHour = /^([1-9]|1[0-2])$/,
+            validateMinute = /^([01]?\d|59)$/,
             startToMinutes,
             endToMinutes,
             minutesDiff,
