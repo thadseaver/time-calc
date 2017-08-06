@@ -13,6 +13,9 @@
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
             validateHour = /^([1-9]|1[0-2])$/,
             validateMinute = /^([01]?\d|59)$/,
+            answer = document.getElementById("answer"),
+            allInputElements = document.getElementsByTagName("input"),
+            errorCheck = true,
             startToMinutes,
             endToMinutes,
             minutesDiff,
@@ -20,6 +23,16 @@
             minuteFinal,
             hourOutput,
             minuteOutput;
+
+            // Validate hour entered
+            if (!validateHour.test(startHour)) {
+                var startHourField = document.getElementById("start-hour");
+                startHourField.classList.add("error");
+                answer.innerHTML = "<p class='red-text'>Please enter a valid number.</p>";
+                startHourField.focus();
+                errorCheck = false;
+                return false;
+            }
 
             // Allows for AM/PM calculation
             if (startAmPm === "pm" && startHour != 12) {
@@ -59,9 +72,15 @@
                 minuteOutput = "minutes";
             }
 
-            var ans = document.getElementById("answer");
-            ans.innerHTML = "<p>Total time is " + hourFinal + " " + hourOutput +
+            // Outputs final answer
+            answer.innerHTML = "<p>Total time is " + hourFinal + " " + hourOutput +
             " and " + minuteFinal + " " + minuteOutput + "." + "</p>";
+            console.log(startHour);
+            /*if (errorCheck === true) {
+                allInputElements.classList.remove("error");
+            }*/
+
+            //allInputElements.classList.add("no-error");
 
         e.preventDefault();
     };
