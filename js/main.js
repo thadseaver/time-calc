@@ -1,20 +1,30 @@
 (function() {
-
+    "use strict";
     var btn = document.getElementById('calc');
 
     btn.onclick = function(e){
 
-        var startHour = parseInt(document.getElementById('start-hour').value),
+        var startHourField = document.getElementById('start-hour'),
+            startHour = parseInt(document.getElementById('start-hour').value),
+
+            startMinuteField = document.getElementById('start-minute'),
             startMinute = parseInt(document.getElementById('start-minute').value),
+
             startAmPm = document.querySelector('input[name = start-am-pm]:checked').value,
+
+            endHourField = document.getElementById('end-hour'),
             endHour = parseInt(document.getElementById('end-hour').value),
+
+            endMinuteField = document.getElementById('end-minute'),
             endMinute = parseInt(document.getElementById('end-minute').value),
+
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
+
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
             validateHour = /^([1-9]|1[0-2])$/,
             validateMinute = /^([01]?\d|59)$/,
-            answer = document.getElementById("answer"),
-            allInputElements = document.getElementsByTagName("input"),
+            answer = document.getElementById('answer'),
+            allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
             errorCheck = true,
             startToMinutes,
             endToMinutes,
@@ -24,23 +34,27 @@
             hourOutput,
             minuteOutput;
 
+            allTextInput.forEach(function(i) {
+                i.classList.remove('error');
+            });
+
             // Validate hour entered
             if (!validateHour.test(startHour)) {
-                var startHourField = document.getElementById("start-hour");
-                startHourField.classList.add("error");
-                answer.innerHTML = "<p class='red-text'>Please enter a valid number.</p>";
-                startHourField.focus();
+                //var startHourField = document.getElementById("start-hour");
+                startHourField.classList.add('error');
+                answer.innerHTML = '<p class="red-text">Please enter a valid number.</p>';
+                //startHourField.focus();
                 errorCheck = false;
                 return false;
             }
 
             // Allows for AM/PM calculation
-            if (startAmPm === "pm" && startHour != 12) {
+            if (startAmPm === 'pm' && startHour != 12) {
                 startHour += 12;
             }
 
             // Allows for AM/PM calculation
-            if (endAmPm === "pm" && endHour != 12) {
+            if (endAmPm === 'pm' && endHour != 12) {
                 endHour += 12;
             }
 
@@ -52,7 +66,7 @@
             minutesDiff = (endToMinutes - startToMinutes);
 
             // Removes 30 minutes if lunch was taken
-            if (lunchTaken === "yes") {
+            if (lunchTaken === 'yes') {
                 minutesDiff -= 30;
             }
             
@@ -61,26 +75,26 @@
 
             // Determines proper output of hour/hours and minute/minutes
             if (hourFinal === 1) {
-                hourOutput = "hour";
+                hourOutput = 'hour';
             } else {
-                hourOutput = "hours";
+                hourOutput = 'hours';
             }
 
             if (minuteFinal === 1) {
-                minuteOutput = "minute";
+                minuteOutput = 'minute';
             } else {
-                minuteOutput = "minutes";
+                minuteOutput = 'minutes';
             }
 
             // Outputs final answer
-            answer.innerHTML = "<p>Total time is " + hourFinal + " " + hourOutput +
-            " and " + minuteFinal + " " + minuteOutput + "." + "</p>";
-            console.log(startHour);
+            answer.innerHTML = '<p>Total time is ' + hourFinal + ' ' + hourOutput +
+            ' and ' + minuteFinal + ' ' + minuteOutput + '.' + '</p>';
+            //console.log(startHour);
             /*if (errorCheck === true) {
-                allInputElements.classList.remove("error");
+                allTextInput.classList.remove("error");
             }*/
 
-            //allInputElements.classList.add("no-error");
+            //allTextInput.classList.add("no-error");
 
         e.preventDefault();
     };
