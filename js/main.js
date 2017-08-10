@@ -22,7 +22,7 @@
 
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
             validateHour = /^([1-9]|1[0-2])$/,
-            validateMinute = /^([01]?\d|59)$/,
+            validateMinute = /^[0-5]?[0-9]$/,
             answer = document.getElementById('answer'),
             allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
             errorCheck = true,
@@ -38,12 +38,34 @@
                 i.classList.remove('error');
             });
 
-            // Validate hour entered
-            if (!validateHour.test(startHour)) {
-                //var startHourField = document.getElementById("start-hour");
+            // Validate start hour entered
+            if (isNaN(startHour) || !validateHour.test(startHour)) {
                 startHourField.classList.add('error');
-                answer.innerHTML = '<p class="red-text">Please enter a valid number.</p>';
-                //startHourField.focus();
+                answer.innerHTML = '<p class="red-text">Please enter a number between 1 and 12.</p>';
+                errorCheck = false;
+                return false;
+            }
+
+            // Validate end hour entered
+            if (isNaN(endHour) || !validateHour.test(endHour)) {
+                endHourField.classList.add('error');
+                answer.innerHTML = '<p class="red-text">Please enter a number between 1 and 12.</p>';
+                errorCheck = false;
+                return false;
+            }
+
+            // Validate start minute entered
+            if (isNaN(startMinute) || !validateMinute.test(startMinute)) {
+                startMinuteField.classList.add('error');
+                answer.innerHTML = '<p class="red-text">Please enter a number between 0 and 59.</p>';
+                errorCheck = false;
+                return false;
+            }
+
+            // Validate end minute entered
+            if (isNaN(endMinute) || !validateMinute.test(endMinute)) {
+                endMinuteField.classList.add('error');
+                answer.innerHTML = '<p class="red-text">Please enter a number between 0 and 59.</p>';
                 errorCheck = false;
                 return false;
             }
@@ -87,14 +109,14 @@
             }
 
             // Outputs final answer
-            answer.innerHTML = '<p>Total time is ' + hourFinal + ' ' + hourOutput +
-            ' and ' + minuteFinal + ' ' + minuteOutput + '.' + '</p>';
-            //console.log(startHour);
-            /*if (errorCheck === true) {
-                allTextInput.classList.remove("error");
-            }*/
 
-            //allTextInput.classList.add("no-error");
+            if (errorCheck === true) {
+                answer.innerHTML = '<p>Total time is ' + hourFinal + ' ' + hourOutput +
+            ' and ' + minuteFinal + ' ' + minuteOutput + '.' + '</p>';
+            } else {
+                answer.innerHTML = '<p class="red-text">Please enter a valid number.</p>';
+                return false;
+            };
 
         e.preventDefault();
     };
