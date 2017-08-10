@@ -3,6 +3,32 @@
 Time Calc - July 2017
 Calculates the amount of time that passed between the entered start time and end time */
 
+body {
+	font-size: 1.2em;
+}
+
+fieldset {
+	margin-bottom: 1em;
+}
+
+input[type=text] {
+	margin-right: 1em;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: .5em;
+}
+
+#wrap {
+	width: 22em;
+	margin: 0 auto;
+}
+
+#calc {
+	margin-right: 1em;
+}
+
 .error {
 	border: 2px solid #F00;
 }
@@ -13,4 +39,9 @@ Calculates the amount of time that passed between the entered start time and end
 
 .red-text {
 	color: #F00;
+}
+
+#answer {
+	font-size: 1.3em;
+	margin-top: .8em;
 }
