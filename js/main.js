@@ -23,6 +23,8 @@
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
             validateHour = /^([1-9]|1[0-2])$/,
             validateMinute = /^[0-5]?[0-9]$/,
+            hourError = '<p class="red-text">Please enter a number from 1 to 12.</p>',
+            minuteError = '<p class="red-text">Please enter a number from 0 to 59.</p>',
             answer = document.getElementById('answer'),
             allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
             errorCheck = true,
@@ -41,7 +43,7 @@
             // Validate start hour entered
             if (isNaN(startHour) || !validateHour.test(startHour)) {
                 startHourField.classList.add('error');
-                answer.innerHTML = '<p class="red-text">Please enter a number between 1 and 12.</p>';
+                answer.innerHTML = hourError;
                 errorCheck = false;
                 return false;
             }
@@ -49,7 +51,7 @@
             // Validate end hour entered
             if (isNaN(endHour) || !validateHour.test(endHour)) {
                 endHourField.classList.add('error');
-                answer.innerHTML = '<p class="red-text">Please enter a number between 1 and 12.</p>';
+                answer.innerHTML = hourError;
                 errorCheck = false;
                 return false;
             }
@@ -57,7 +59,7 @@
             // Validate start minute entered
             if (isNaN(startMinute) || !validateMinute.test(startMinute)) {
                 startMinuteField.classList.add('error');
-                answer.innerHTML = '<p class="red-text">Please enter a number between 0 and 59.</p>';
+                answer.innerHTML = minuteError;
                 errorCheck = false;
                 return false;
             }
@@ -65,7 +67,7 @@
             // Validate end minute entered
             if (isNaN(endMinute) || !validateMinute.test(endMinute)) {
                 endMinuteField.classList.add('error');
-                answer.innerHTML = '<p class="red-text">Please enter a number between 0 and 59.</p>';
+                answer.innerHTML = minuteError;
                 errorCheck = false;
                 return false;
             }
