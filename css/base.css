@@ -12,26 +12,44 @@ body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
-fieldset {
-	margin-bottom: 1em;
+h1 {
+	font-size: 1.7em;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 
-input[type=text], input[type="radio"] {
-	margin-right: 4%;
+fieldset {
+	margin-bottom: 4%;
+}
+
+input[type=text] {
+	margin-bottom: 6%;
+	margin-right: 3%;
+	display: inline;
+	width: 42px;
+}
+
+input[type="radio"] {
+	margin-bottom: 3%;
+	margin-right: 3%;
 }
 
 p {
 	margin-top: 0;
-	margin-bottom: .5em;
+	margin-bottom: 2%;
 }
 
 #wrap {
-	width: 23%;
+	width: 94%;
 	margin: 0 auto;
 }
 
+.am-pm {
+	display: block;
+}
+
 #calc {
-	margin-right: 1em;
+	margin-right: 4%;
 	font-size: 1em;
 }
 
@@ -43,10 +61,6 @@ p {
 	border: 2px solid #C00;
 }
 
-.no-error {
-	border: none;
-}
-
 .red-text {
 	color: #C00;
 }
@@ -54,4 +68,69 @@ p {
 #answer {
 	font-size: 1.3em;
 	margin-top: 4%;
+}
+
+@media screen and (min-width:450px){  /*********************************************************/
+
+	body {
+		font-size: 1em;
+		background: url(../images/bg-body.png) repeat;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+	}
+
+	h1 {
+		font-size: 2em;
+		margin-top: 5%;
+		margin-bottom: 5%;
+	}
+
+	fieldset {
+		margin-bottom: 4%;
+	}
+
+	input[type=text] {
+		margin-right: 3%;
+		display: inline;
+		width: 42px;
+	}
+
+	input[type="radio"] {
+		margin-right: 3%;
+	}
+
+	p {
+		margin-top: 0;
+		margin-bottom: 2%;
+	}
+
+	#wrap {
+		width: 435px;
+		margin: 0 auto;
+	}
+
+	.am-pm {
+		display: inline;
+	}
+
+	#calc {
+		margin-right: 4%;
+		font-size: 1em;
+	}
+
+	#clear {
+		font-size: 1em;
+	}
+
+	.error {
+		border: 2px solid #C00;
+	}
+
+	.red-text {
+		color: #C00;
+	}
+
+	#answer {
+		font-size: 1.3em;
+		margin-top: 4%;
+	}
 }
