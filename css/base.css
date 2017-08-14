@@ -30,7 +30,7 @@ input[type=text] {
 }
 
 input[type="radio"] {
-	margin-right: 3%;
+	margin-right: 4%;
 }
 
 p {
@@ -45,6 +45,7 @@ p {
 
 .am-pm {
 	display: block;
+	margin-top: 5%;
 }
 
 #calc {
