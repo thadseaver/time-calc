@@ -111,14 +111,19 @@
             }
 
             // Outputs final answer
-
             if (errorCheck === true) {
-                answer.innerHTML = '<p>Total time is ' + hourFinal + ' ' + hourOutput +
-            ' and ' + minuteFinal + ' ' + minuteOutput + '.' + '</p>';
+                if (hourFinal === 0) {
+                    answer.innerHTML = '<p>Total time is ' + minuteFinal + ' ' + minuteOutput + '.' + '</p>';
+                } else if (minuteFinal === 0) {
+                    answer.innerHTML = '<p>Total time is ' + hourFinal + ' ' + hourOutput + '.' + '</p>';
+                } else {
+                    answer.innerHTML = '<p>Total time is ' + hourFinal + ' ' + hourOutput +
+                ' and ' + minuteFinal + ' ' + minuteOutput + '.' + '</p>';
+                }                
             } else {
                 answer.innerHTML = '<p class="red-text">Please enter a valid number.</p>';
                 return false;
-            };
+            }
 
         e.preventDefault();
     };
