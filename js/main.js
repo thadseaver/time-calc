@@ -21,10 +21,14 @@
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
 
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
+            breakTaken = document.querySelector('input[name = break]:checked').value,
+
             validateHour = /^([1-9]|1[0-2])$/,
             validateMinute = /^[0-5]?[0-9]$/,
+
             hourError = '<p class="red-text">Please enter a number from 1 to 12.</p>',
             minuteError = '<p class="red-text">Please enter a number from 0 to 59.</p>',
+
             answer = document.getElementById('answer'),
             allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
             errorCheck = true,
@@ -93,6 +97,11 @@
             if (lunchTaken === 'yes') {
                 minutesDiff -= 30;
             }
+
+            // Removes 15 minutes if break was taken
+            if (breakTaken === 'yes') {
+                minutesDiff -= 15;
+            };
             
             hourFinal = Math.floor(minutesDiff / 60);
             minuteFinal = (minutesDiff % 60);
