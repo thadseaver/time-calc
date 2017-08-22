@@ -20,8 +20,8 @@
 
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
 
-            lunchTaken = document.querySelector('input[name = lunch]:checked').value,
             breakTaken = document.querySelector('input[name = break]:checked').value,
+            lunchTaken = document.querySelector('input[name = lunch]:checked').value,
 
             validateHour = /^([1-9]|1[0-2])$/,
             validateMinute = /^[0-5]?[0-9]$/,
