@@ -10,6 +10,8 @@
             startMinuteField = document.getElementById('start-minute'),
             startMinute = parseInt(document.getElementById('start-minute').value),
 
+            startAm = document.getElementById('start-am'),
+            startPm = document.getElementById('start-pm'),
             startAmPm = document.querySelector('input[name = start-am-pm]:checked').value,
 
             endHourField = document.getElementById('end-hour'),
@@ -18,6 +20,8 @@
             endMinuteField = document.getElementById('end-minute'),
             endMinute = parseInt(document.getElementById('end-minute').value),
 
+            endAm = document.getElementById('end-am'),
+            endPm = document.getElementById('end-pm'),
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
 
             breakTaken = document.querySelector('input[name = break]:checked').value,
@@ -28,9 +32,14 @@
 
             hourError = '<p class="red-text">Please enter a number from 1 to 12.</p>',
             minuteError = '<p class="red-text">Please enter a number from 0 to 59.</p>',
+            genericError = '<p class="red-text">Please enter a valid number.</p>',
 
             answer = document.getElementById('answer'),
+            
             allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
+            allInputs = [startHourField, startMinuteField, endHourField, endMinuteField, 
+                startAm, startPm, endAm, endPm],
+
             errorCheck = true,
             startToMinutes,
             endToMinutes,
@@ -40,7 +49,7 @@
             hourOutput,
             minuteOutput;
 
-            allTextInput.forEach(function(i) {
+            allInputs.forEach(function(i) {
                 i.classList.remove('error');
             });
 
@@ -90,6 +99,16 @@
             startToMinutes = ((startHour * 60) + startMinute);
             endToMinutes = ((endHour * 60) + endMinute);
 
+            // Check for end time that comes before start time
+            if (startToMinutes > endToMinutes) {
+
+                allInputs.forEach(function(i) {
+                    i.classList.add('error');
+                });
+
+                answer.innerHTML = genericError;
+                return false;
+            }
 
             minutesDiff = (endToMinutes - startToMinutes);
 
@@ -101,7 +120,7 @@
             // Removes 15 minutes if break was taken
             if (breakTaken === 'yes') {
                 minutesDiff -= 15;
-            };
+            }
             
             hourFinal = Math.floor(minutesDiff / 60);
             minuteFinal = (minutesDiff % 60);
@@ -130,7 +149,7 @@
                 ' and ' + minuteFinal + ' ' + minuteOutput + '.' + '</p>';
                 }                
             } else {
-                answer.innerHTML = '<p class="red-text">Please enter a valid number.</p>';
+                answer.innerHTML = genericError;
                 return false;
             }
 

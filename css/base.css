@@ -59,7 +59,7 @@ p {
 }
 
 .error {
-	border: 2px solid #C00;
+	box-shadow: 0 0 2px 2px rgba(255,0,0,0.6);
 }
 
 .red-text {
