@@ -86,12 +86,12 @@
             }
 
             // Allows for AM/PM calculation
-            if (startAmPm === 'pm' && startHour != 12) {
+            if ((startAmPm === 'pm' && startHour != 12) || (startAmPm === 'am' && startHour === 12)) {
                 startHour += 12;
             }
 
             // Allows for AM/PM calculation
-            if (endAmPm === 'pm' && endHour != 12) {
+            if ((endAmPm === 'pm' && endHour != 12) || (endAmPm === 'am' && endHour === 12)) {                
                 endHour += 12;
             }
 
