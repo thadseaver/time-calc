@@ -41,11 +41,9 @@
 
             answer = document.getElementById('answer'),
             
-            allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
-
-            allInputs = [startHourField, startMinuteField, endHourField, endMinuteField, 
+            timeInputs = [startHourField, startMinuteField, endHourField, endMinuteField, 
                 startAm, startPm, endAm, endPm],
-                
+
             entireForm = [startHourField, startMinuteField, endHourField, endMinuteField, 
                 startAm, startPm, endAm, endPm, breakYes, breakNo, lunchYes, lunchNo],
 
@@ -111,7 +109,7 @@
             // Check for end time that comes before start time
             if (startToMinutes > endToMinutes) {
 
-                allInputs.forEach(function(i) {
+                timeInputs.forEach(function(i) {
                     i.classList.add('error');
                 });
 
@@ -134,8 +132,8 @@
             hourFinal = Math.floor(minutesDiff / 60);
             minuteFinal = (minutesDiff % 60);
 
-            // Check for negative final times
-            if (minuteFinal < 0) {
+            // Check for final time of 0 or negative number
+            if ((minuteFinal < 0) || (hourFinal === 0 && minuteFinal === 0)) {
                 entireForm.forEach(function(i) {
                     i.classList.add('error');
                 });
@@ -144,7 +142,7 @@
                 return false;
             }
 
-            // Determines proper output of hour/hours and minute/minutes
+            // Determines proper wording of hour/hours and minute/minutes for final time display
             if (hourFinal === 1) {
                 hourOutput = 'hour';
             } else {
