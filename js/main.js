@@ -25,7 +25,12 @@
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
 
             breakTaken = document.querySelector('input[name = break]:checked').value,
+            breakYes = document.getElementById('break-yes'),
+            breakNo = document.getElementById('break-no'),
+
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
+            lunchYes = document.getElementById('lunch-yes'),
+            lunchNo = document.getElementById('lunch-no'),
 
             validateHour = /^([1-9]|1[0-2])$/,
             validateMinute = /^[0-5]?[0-9]$/,
@@ -36,9 +41,11 @@
 
             answer = document.getElementById('answer'),
             
-            allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
-            allInputs = [startHourField, startMinuteField, endHourField, endMinuteField, 
+            timeInputs = [startHourField, startMinuteField, endHourField, endMinuteField, 
                 startAm, startPm, endAm, endPm],
+
+            entireForm = [startHourField, startMinuteField, endHourField, endMinuteField, 
+                startAm, startPm, endAm, endPm, breakYes, breakNo, lunchYes, lunchNo],
 
             errorCheck = true,
             startToMinutes,
@@ -49,7 +56,7 @@
             hourOutput,
             minuteOutput;
 
-            allInputs.forEach(function(i) {
+            entireForm.forEach(function(i) {
                 i.classList.remove('error');
             });
 
@@ -102,7 +109,7 @@
             // Check for end time that comes before start time
             if (startToMinutes > endToMinutes) {
 
-                allInputs.forEach(function(i) {
+                timeInputs.forEach(function(i) {
                     i.classList.add('error');
                 });
 
@@ -125,7 +132,17 @@
             hourFinal = Math.floor(minutesDiff / 60);
             minuteFinal = (minutesDiff % 60);
 
-            // Determines proper output of hour/hours and minute/minutes
+            // Check for final time of 0 or negative number
+            if ((minuteFinal < 0) || (hourFinal === 0 && minuteFinal === 0)) {
+                entireForm.forEach(function(i) {
+                    i.classList.add('error');
+                });
+                answer.innerHTML = genericError;
+                errorCheck = false;
+                return false;
+            }
+
+            // Determines proper wording of hour/hours and minute/minutes for final time display
             if (hourFinal === 1) {
                 hourOutput = 'hour';
             } else {
