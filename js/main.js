@@ -42,8 +42,10 @@
             answer = document.getElementById('answer'),
             
             allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
+
             allInputs = [startHourField, startMinuteField, endHourField, endMinuteField, 
                 startAm, startPm, endAm, endPm],
+                
             entireForm = [startHourField, startMinuteField, endHourField, endMinuteField, 
                 startAm, startPm, endAm, endPm, breakYes, breakNo, lunchYes, lunchNo],
 
@@ -56,7 +58,7 @@
             hourOutput,
             minuteOutput;
 
-            allInputs.forEach(function(i) {
+            entireForm.forEach(function(i) {
                 i.classList.remove('error');
             });
 
