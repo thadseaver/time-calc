@@ -25,7 +25,12 @@
             endAmPm = document.querySelector('input[name = end-am-pm]:checked').value,
 
             breakTaken = document.querySelector('input[name = break]:checked').value,
+            breakYes = document.getElementById('break-yes'),
+            breakNo = document.getElementById('break-no'),
+
             lunchTaken = document.querySelector('input[name = lunch]:checked').value,
+            lunchYes = document.getElementById('lunch-yes'),
+            lunchNo = document.getElementById('lunch-no'),
 
             validateHour = /^([1-9]|1[0-2])$/,
             validateMinute = /^[0-5]?[0-9]$/,
@@ -39,6 +44,8 @@
             allTextInput = [startHourField, startMinuteField, endHourField, endMinuteField],
             allInputs = [startHourField, startMinuteField, endHourField, endMinuteField, 
                 startAm, startPm, endAm, endPm],
+            entireForm = [startHourField, startMinuteField, endHourField, endMinuteField, 
+                startAm, startPm, endAm, endPm, breakYes, breakNo, lunchYes, lunchNo],
 
             errorCheck = true,
             startToMinutes,
@@ -124,6 +131,16 @@
             
             hourFinal = Math.floor(minutesDiff / 60);
             minuteFinal = (minutesDiff % 60);
+
+            // Check for negative final times
+            if (minuteFinal < 0) {
+                entireForm.forEach(function(i) {
+                    i.classList.add('error');
+                });
+                answer.innerHTML = genericError;
+                errorCheck = false;
+                return false;
+            }
 
             // Determines proper output of hour/hours and minute/minutes
             if (hourFinal === 1) {
